@@ -1,0 +1,92 @@
+{
+  "name": "NestJS Dev Container",
+
+  // 使用 docker-compose 啟動開發環境
+  "dockerComposeFile": ["../docker-compose.yml"],
+  "service": "app",
+  "workspaceFolder": "/workspaces/nodejs-nestjs-sample",
+
+  // 容器啟動後自動執行的指令（安裝依賴）
+  "postCreateCommand": "if [ -f package.json ]; then npm install; fi",
+
+  // VS Code 設定
+  "customizations": {
+    "vscode": {
+      // 推薦安裝的擴充套件
+      "extensions": [
+        // TypeScript & JavaScript
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-vscode.vscode-typescript-next",
+
+        // NestJS
+        "ashinzekene.nestjs",
+
+        // 資料庫
+        "cweijan.vscode-mysql-client2",
+        "cweijan.vscode-redis-client",
+
+        // Git
+        "eamodio.gitlens",
+        "mhutchie.git-graph",
+
+        // 開發輔助
+        "streetsidesoftware.code-spell-checker",
+        "usernamehw.errorlens",
+        "christian-kohler.path-intellisense",
+        "formulahendry.auto-rename-tag",
+
+        // REST API 測試
+        "humao.rest-client",
+
+        // Docker
+        "ms-azuretools.vscode-docker"
+      ],
+
+      // VS Code 編輯器設定
+      "settings": {
+        // 編輯器基本設定
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit",
+          "source.organizeImports": "explicit"
+        },
+        "editor.tabSize": 2,
+
+        // TypeScript 設定
+        "typescript.preferences.importModuleSpecifier": "relative",
+        "typescript.updateImportsOnFileMove.enabled": "always",
+
+        // ESLint 設定
+        "eslint.validate": [
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact"
+        ],
+
+        // 檔案設定
+        "files.eol": "\n",
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true,
+
+        // 終端機設定
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+
+  // 轉發的 port（對應 docker-compose.yml 中的設定）
+  "forwardPorts": [3000, 3306, 6379],
+
+  // port 標籤（方便識別）
+  "portsAttributes": {
+    "3000": { "label": "NestJS App" },
+    "3306": { "label": "MySQL" },
+    "6379": { "label": "Redis" }
+  },
+
+  // 容器內使用 root 使用者（簡化開發環境權限問題）
+  "remoteUser": "root"
+}

@@ -1,0 +1,164 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    // ===== 開發相關 =====
+    {
+      "label": "npm: install",
+      "type": "shell",
+      "command": "npm install",
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "npm: start:dev",
+      "type": "shell",
+      "command": "npm run start:dev",
+      "problemMatcher": [],
+      "group": "build",
+      "isBackground": true
+    },
+    {
+      "label": "npm: start:debug",
+      "type": "shell",
+      "command": "npm run start:debug",
+      "problemMatcher": [],
+      "group": "build",
+      "isBackground": true
+    },
+    {
+      "label": "npm: build",
+      "type": "shell",
+      "command": "npm run build",
+      "problemMatcher": ["$tsc"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+
+    // ===== 測試相關 =====
+    {
+      "label": "npm: test",
+      "type": "shell",
+      "command": "npm run test",
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "npm: test:watch",
+      "type": "shell",
+      "command": "npm run test:watch",
+      "problemMatcher": [],
+      "group": "test",
+      "isBackground": true
+    },
+    {
+      "label": "npm: test:cov",
+      "type": "shell",
+      "command": "npm run test:cov",
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "npm: test:e2e",
+      "type": "shell",
+      "command": "npm run test:e2e",
+      "problemMatcher": [],
+      "group": "test"
+    },
+
+    // ===== 程式碼品質 =====
+    {
+      "label": "npm: lint",
+      "type": "shell",
+      "command": "npm run lint",
+      "problemMatcher": ["$eslint-stylish"],
+      "group": "build"
+    },
+    {
+      "label": "npm: format",
+      "type": "shell",
+      "command": "npm run format",
+      "problemMatcher": [],
+      "group": "build"
+    },
+
+    // ===== Docker 相關 =====
+    {
+      "label": "Docker: Compose Up",
+      "type": "shell",
+      "command": "docker compose up -d",
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "Docker: Compose Down",
+      "type": "shell",
+      "command": "docker compose down",
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "Docker: Compose Logs",
+      "type": "shell",
+      "command": "docker compose logs -f",
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true
+    },
+
+    // ===== NestJS CLI =====
+    {
+      "label": "NestJS: Generate Module",
+      "type": "shell",
+      "command": "nest generate module ${input:moduleName}",
+      "problemMatcher": []
+    },
+    {
+      "label": "NestJS: Generate Controller",
+      "type": "shell",
+      "command": "nest generate controller ${input:controllerName}",
+      "problemMatcher": []
+    },
+    {
+      "label": "NestJS: Generate Service",
+      "type": "shell",
+      "command": "nest generate service ${input:serviceName}",
+      "problemMatcher": []
+    },
+    {
+      "label": "NestJS: Generate Resource (CRUD)",
+      "type": "shell",
+      "command": "nest generate resource ${input:resourceName}",
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "moduleName",
+      "description": "Module name",
+      "type": "promptString"
+    },
+    {
+      "id": "controllerName",
+      "description": "Controller name",
+      "type": "promptString"
+    },
+    {
+      "id": "serviceName",
+      "description": "Service name",
+      "type": "promptString"
+    },
+    {
+      "id": "resourceName",
+      "description": "Resource name (for CRUD generation)",
+      "type": "promptString"
+    }
+  ]
+}
